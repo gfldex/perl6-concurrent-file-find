@@ -133,8 +133,11 @@ sub find-simple ( IO(Str) $dir,
             if .IO.l && !.IO.e {
                 X::IO::StaleSymlink.new(path=>.Str).throw;
             }
-            $channel.send(.IO) if .IO.f;
-            $channel.send(.IO) if .IO.d;
+            {
+                CATCH { when X::Channel::ReceiveOnClosed { last } }
+                $channel.send(.IO) if .IO.f;
+                $channel.send(.IO) if .IO.d;
+            }
             .IO.dir().sort({.e && .f})».&?BLOCK if .IO.e && .IO.d;
         }
         LEAVE $channel.close;
