@@ -44,6 +44,44 @@ ongoing fetching. This is a bit wonky any may produce a warning when the
 underlying `Promise` is `DESTROY`ed. There are various inclusive and exclusive
 filter options as described below.
 
+#### Matcher
+
+#### Arguments
+
+`IO(Str) $dir` - 
+
+`:$name` - 
+
+`:$exclude` - 
+
+`:$exclude-dir` - 
+
+`:$include` - 
+
+`:$include-dir` - 
+
+`:$extension` - 
+
+`:&return-type = { .IO.Str }` - 
+
+`:$no-thread = False` - 
+
+`:$file = True` - 
+
+`:$directory` - 
+
+`:$symlink` - 
+
+`:$max-depth = ∞` - 
+
+`:$recursive` - 
+
+`:$follow-symlink = False` - 
+
+`:$keep-going = True` - 
+
+`:$quiet = False` - 
+
 ### sub find-simple
 
 Same as `find` but without filter options, always recursive, follows existing
