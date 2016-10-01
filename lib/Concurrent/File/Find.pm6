@@ -140,7 +140,7 @@ sub find-simple ( IO(Str) $dir,
                 $channel.send(.IO) if .IO.f;
                 $channel.send(.IO) if .IO.d;
             }
-            .IO.dir().sort({.e && .f})».&?BLOCK if .IO.e && .IO.d;
+            .IO.dir()».&?BLOCK if .IO.e && .IO.d;
         }
         LEAVE $channel.close unless $channel.closed;
     }
