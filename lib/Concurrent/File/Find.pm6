@@ -39,7 +39,7 @@ sub find (
     :$no-thread = False,
     :$file = True, :$directory, :$symlink,
     :$max-depth where * > 0 = ∞,
-    :$recursive, :$follow-symlink = False,
+    :$recursive = True, :$follow-symlink = False,
     :$keep-going = True, :$quiet = False
 ) is export {
     constant dir-sep = $*SPEC.dir-sep;
