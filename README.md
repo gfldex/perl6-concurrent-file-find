@@ -46,41 +46,56 @@ filter options as described below.
 
 #### Matcher
 
+Some arguments take a matcher or a list of matchers. The `Junction`-type used
+when given a list depends on the argument. As matchers `Str`, `Regex`, and
+`Callable` are accepted. Unless stated otherwise `Str` matches partially and
+case sensitive against the filename or the whole path. `Regexp` smartmatches
+against `IO::Path.Str` and `Callable` is called with `IO::Path`.
+
 #### Arguments
 
-`IO(Str) $dir` - 
+`IO(Str) $dir` - directory where to start either as `IO::Path` or `Str`.
 
-`:$name` - 
+`:$file = True` - also return files
 
-`:$exclude` - 
+`:$directory` - also return directories
 
-`:$exclude-dir` - 
+`:$symlink` - also return symlinks
 
-`:$include` - 
+`:&return-type = { .IO.Str }` - transform the matched items to `Str` by
+default. The block is fed with `IO::Path` objects. The result is returned as is
+and not used by `find` itself, you can go wild here.
 
-`:$include-dir` - 
+`:$name` - return any file in any directory that matches provided matcher.
+Using `Str` as matcher requires exact, case sensitive match.
 
-`:$extension` - 
+`:$include` - return any file where `IO::Path.basename` matches provided
+matcher. Using `Str` as matcher requires partial match.
 
-`:&return-type = { .IO.Str }` - 
+`:$exclude` - do not return any file where `IO::Path.basename` matches provided
+matcher. Using `Str` as matcher requires partial match.
 
-`:$no-thread = False` - 
+`:$include-dir` - do return or decent into directories that match provided
+matcher.  Using `Str` as matcher requires partial match.
 
-`:$file = True` - 
+`:$exclude-dir` - do not return or decent into directories that match provided
+matcher. Using `Str` as matcher requires partial match.
 
-`:$directory` - 
+`:$extension` - return any item that matches `IO::Path.extension`. Using `Str`
+as matcher requires exact, case sensitive match.
 
-`:$symlink` - 
+`:$recursive = True` - descent into sub-directories.
 
-`:$max-depth = ∞` - 
+`Int :$max-depth = ∞` - descent as deep into sub-directories.
 
-`:$recursive` - 
+`:$follow-symlink = False` - follow symlinks. There is no loop detection yet.
 
-`:$follow-symlink = False` - 
+`:$keep-going = True` - on errors (access denied, stale symlinks, etc.) keek
+going but output warning on $*ERR.
 
-`:$keep-going = True` - 
+`:$quiet = False` - in conjunction with $keep-going, do not outout warnings.
 
-`:$quiet = False` - 
+`:$no-thread = False` - disable creation of `Promise`. Useful for debugging.
 
 ### sub find-simple
 
