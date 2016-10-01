@@ -14,7 +14,6 @@ find(%*ENV<HOME>
     , :file # return file paths
     , :!directory # don't return directory paths
     , :symlink # return symlink paths
-    , :recursive # be recursive
     , :max-depth(5) # but not deeper then 5 directories deep
     , :follow-symlink # follow symlinks (no loop detection yet)
     , :keep-going # on error (no access, stale symlink, etc.), keep going
