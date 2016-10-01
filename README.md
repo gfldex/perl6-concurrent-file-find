@@ -1,4 +1,5 @@
 # perl6-concurrent-file-find
+[![Build Status](https://travis-ci.org/gfldex/perl6-concurrent-file-find.svg?branch=master)](https://travis-ci.org/gfldex/perl6-concurrent-file-find)
 concurrent File::Find for Perl 6
 
 # SYNOPSIS
