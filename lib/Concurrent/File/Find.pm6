@@ -57,7 +57,7 @@ sub find (
     my @exclude-tests;
     for $exclude.list -> $exclude {
         @exclude-tests.push({ .Str ~~ $exclude })        if $exclude ~~ Regex;
-        @exclude-tests.push({ $exclude.(.IO) })          if $exclude ~~ Callable & !Regex;
+        @exclude-tests.push({ $exclude.(.IO) })          if $exclude ~~ Callable ^ Regex;
         @exclude-tests.push({ .Str.contains($exclude) }) if $exclude ~~ Str;
     }
     @tests.append(@exclude-tests.none);
@@ -65,15 +65,15 @@ sub find (
     my @include-tests;
     for $include.list -> $include {
         @include-tests.push({ .Str ~~ $include })        if $include ~~ Regex;
-        @include-tests.push({ $include.(.IO) })          if $include ~~ Callable & !Regex;
+        @include-tests.push({ $include.(.IO) })          if $include ~~ Callable ^ Regex;
         @include-tests.push({ .Str.contains($include) }) if $include ~~ Str;
     }
     @tests.append(@include-tests.any) if @include-tests;
 
     my @extension-tests;
     for $extension.list -> $test {
-        @extension-tests.push({ .extension ~~ $test }) if $test ~~ Regex;
-        @extension-tests.push({ $test.(.extension) })  if $test ~~ Callable & !Regex;
+        @extension-tests.push({ .extension ~~ $test if .extension }) if $test ~~ Regex;
+        @extension-tests.push({ $test.(.extension) })  if $test ~~ Callable ^ Regex;
         @extension-tests.push({ $test eq .extension }) if $test ~~ Str;
     }
     @tests.append(@extension-tests.any) if @extension-tests;
