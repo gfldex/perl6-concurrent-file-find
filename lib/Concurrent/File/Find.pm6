@@ -113,7 +113,7 @@ sub find (
                 CATCH { when X::Channel::SendOnClosed { last } }
                 $channel.send(.&return-type) if all @tests».(.IO);
             }
-            .IO.dir().sort({.f})».&?BLOCK if $recursive && .&max-depth && all @dir-tests».(.IO)
+            .IO.dir().sort({.e && .f})».&?BLOCK if $recursive && .&max-depth && all @dir-tests».(.IO)
         }
         LEAVE $channel.close;
     }
