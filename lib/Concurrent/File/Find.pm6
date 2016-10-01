@@ -38,7 +38,7 @@ sub find (
     :&return-type = { .IO.Str },
     :$no-thread = False,
     :$file = True, :$directory, :$symlink,
-    :$max-depth where * > 0 = ∞,
+    Int :$max-depth where * > 0 = ∞,
     :$recursive = True, :$follow-symlink = False,
     :$keep-going = True, :$quiet = False
 ) is export {
