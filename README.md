@@ -62,7 +62,7 @@ throw `X::IO::StaleSymlink`.
 
 ### `X::IO::NotADirectory`
 
-Try do get the content a path that is not a directory.
+Try do get the content of a path that is not a directory.
 
 ### `X::IO::CanNotAccess`
 
