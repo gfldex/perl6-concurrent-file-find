@@ -43,7 +43,9 @@ background thread. The list got a role mixed in with the sole method `channel`
 that can be used to close the channel behind the `List` to abort any still
 ongoing fetching. This is a bit wonky and may produce a warning when the
 underlying `Promise` is `DESTROY`ed. There are various inclusive and exclusive
-filter options as described below.
+filter options as described below. Files are sorted before directories in the
+returned list for any directory. Only after items are returned recursion into
+sub-directories may occur.
 
 #### Matcher
 
@@ -101,8 +103,8 @@ going but output warning on $*ERR.
 ### sub find-simple
 
 Same as `find` but without filter options, always recursive, follows existing
-symlinks (no loop detection yet). Faster and may contain less bugs. It may
-throw `X::IO::StaleSymlink`.
+symlinks (no loop detection yet) and no sorting. Faster and may contain less
+bugs. It may throw `X::IO::StaleSymlink`.
 
 #### Arguments
 
