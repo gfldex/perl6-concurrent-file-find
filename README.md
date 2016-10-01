@@ -33,6 +33,24 @@ for @l {
 
 # DESCRIPTION
 
+## Exceptions
+
+### X::IO::NotADirectory
+
+Try do get the content a path that is not a directory.
+
+### X::IO::CanNotAccess
+
+Access to a directroy is denied by the OS.
+
+### X::IO::StaleSymlink
+
+We where ment to return or follow a symlink that does exists but got no target.
+
+### X::Paramenter::Exclusive
+
+Named arguments where used together that are mutual exclusive.
+
 # CAVEATS
 
 Loop detection is not supported yet. As soon as there are portable versions for
