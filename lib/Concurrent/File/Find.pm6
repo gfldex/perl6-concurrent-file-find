@@ -109,8 +109,10 @@ sub find (
             if .IO.l && !.IO.e {
                 X::IO::StaleSymlink.new(path=>.Str).throw;
             }
-
-            $channel.send(.&return-type) if all @tests».(.IO);
+            {
+                CATCH { when X::Channel::SendOnClosed { last } }
+                $channel.send(.&return-type) if all @tests».(.IO);
+            }
             .IO.dir().sort({.f})».&?BLOCK if $recursive && .&max-depth && all @dir-tests».(.IO)
         }
         LEAVE $channel.close;
@@ -134,13 +136,13 @@ sub find-simple ( IO(Str) $dir,
                 X::IO::StaleSymlink.new(path=>.Str).throw;
             }
             {
-                CATCH { when X::Channel::ReceiveOnClosed { last } }
+                CATCH { when X::Channel::SendOnClosed { last } }
                 $channel.send(.IO) if .IO.f;
                 $channel.send(.IO) if .IO.d;
             }
             .IO.dir().sort({.e && .f})».&?BLOCK if .IO.e && .IO.d;
         }
-        LEAVE $channel.close;
+        LEAVE $channel.close unless $channel.closed;
     }
 
     return $channel.list but role :: { method channel { $channel } };
