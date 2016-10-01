@@ -41,7 +41,7 @@ for @l {
 Return `List` of files, directories and symlinks as `Str` that are fetched by a
 background thread. The list got a role mixed in with the sole method `channel`
 that can be used to close the channel behind the `List` to abort any still
-ongoing fetching. This is a bit wonky any may produce a warning when the
+ongoing fetching. This is a bit wonky and may produce a warning when the
 underlying `Promise` is `DESTROY`ed. There are various inclusive and exclusive
 filter options as described below.
 
