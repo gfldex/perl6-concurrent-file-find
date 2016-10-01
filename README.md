@@ -46,7 +46,17 @@ filter options as described below.
 
 ### sub find-simple
 
-Same as `find` but without filter options. Faster and may contain less bugs.
+Same as `find` but without filter options, always recursive, follows existing
+symlinks (no loop detection yet). Faster and may contain less bugs. It may
+throw X::IO::StaleSymlink.
+
+#### Arguments
+
+`IO(Str) $dir` - Path as IO::Path or Str at where to start looking for files
+
+`:$keep-going = True` - don't stop at errors
+
+`:$no-thread = False` - don't create a `Promise`, useful for debugging
 
 ## Exceptions
 
