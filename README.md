@@ -30,3 +30,11 @@ for @l {
     .say if $++ %% 100 # print every 100th file
 }
 ```
+
+# DESCRIPTION
+
+# CAVEATS
+
+Loop detection is not supported yet. As soon as there are portable versions for
+readlink and/or stat, loop detection will be added. Until now avoid
+`:follow-symlink` or use `:max-depth`.
