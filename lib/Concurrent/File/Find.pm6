@@ -1,20 +1,20 @@
 use v6;
 
-class X::IO::NotADirectory is Exception is export {
+class X::IO::NotADirectory does X::IO is export {
     has $.path;
     method message {
         "«$.path» is not a directory"
     }
 }
 
-class X::IO::CanNotAccess is Exception is export {
+class X::IO::CanNotAccess does X::IO is export {
     has $.path;
     method message {
         "Cannot access «$.path»: permission denied"
     }
 }
 
-class X::IO::StaleSymlink is Exception is export {
+class X::IO::StaleSymlink does X::IO is export {
     has $.path;
     method message {
         "Stale symlink «$.path»"
