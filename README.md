@@ -116,19 +116,19 @@ bugs. It may throw `X::IO::StaleSymlink`.
 
 ## Exceptions
 
-### `X::IO::NotADirectory`
+### `X::IO::NotADirectory does X::IO`
 
 Try do get the content of a path that is not a directory.
 
-### `X::IO::CanNotAccess`
+### `X::IO::CanNotAccess does X::IO`
 
 Access to a directroy is denied by the OS.
 
-### `X::IO::StaleSymlink`
+### `X::IO::StaleSymlink does X::IO`
 
 We where ment to return or follow a symlink that does exists but got no target.
 
-### `X::Paramenter::Exclusive`
+### `X::Paramenter::Exclusive is Exception`
 
 Named arguments where used together that are mutual exclusive.
 
