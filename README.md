@@ -135,5 +135,5 @@ Named arguments where used together that are mutual exclusive.
 # CAVEATS
 
 Loop detection is not supported yet. As soon as there are portable versions for
-readlink and/or stat, loop detection will be added. Until now avoid
+readlink and/or stat, loop detection will be added. Until then avoid
 `:follow-symlink` or use `:max-depth`.
